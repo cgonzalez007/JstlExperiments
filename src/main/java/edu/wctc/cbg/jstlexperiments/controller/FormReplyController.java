@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author cgonz
+ * @author Chris Gonzalez 2017
  */
 @WebServlet(name = "FormReplyController", urlPatterns = {"/reply"})
 public class FormReplyController extends HttpServlet {
     private static final String INDEX = "/index.jsp";
+    private static final String ERROR_INVALID_INPUT = 
+            "Sorry, input was invalid. Please enter a number from 1-10";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -29,11 +31,16 @@ public class FormReplyController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String destination = INDEX;
-        String rate = request.getParameter("rate");
+        try{
+        int rate = Integer.parseInt(request.getParameter("rate"));
         request.setAttribute("response", rate);
         RequestDispatcher view =
                 request.getRequestDispatcher(destination);
             view.forward(request, response);
+        } catch (Exception e) {
+            destination = INDEX;
+            request.setAttribute("errMsg", ERROR_INVALID_INPUT);
+        }  
         
     }
 

@@ -43,14 +43,14 @@
         <br>
         <br>
         <p>
-            Simple demonstration of if logic using JSTL
+            Simple demonstration of if logic using JSTL 
         </p>
         <br>
         <form id="theForm" name="theForm" method="POST" action="reply">
             <label for="rate">
                 On a scale of 1-10, how are you feeling?
             </label>
-            <input type="text" id="rate" name="rate" value="" max="10" min="1">
+            <input type="number" id="rate" name="rate" value="" max="10" min="1">
             <br>
             <br>
             <input type="submit" id="submit" name="submit" value="Submit">
@@ -58,16 +58,17 @@
         <br>
         <p>
             <c:choose>
-                <c:when test="${rate <= 4}">
+                <c:when test="${response <= 4}">
                    Thats too bad :( Hope you feel better
                 </c:when>
-                <c:when test="${rate > 4 && rate <= 7}">
-                    Thats good
+                <c:when test="${response > 4 && response <= 7}">
+                    Hang in there!
                 </c:when>
-                    <c:when test="${rate > 7}">
-                    Great to hear!!!!
+                    <c:when test="${response > 7}">
+                    Thats great to hear!!!!
                 </c:when>
                 <c:otherwise>
+                    ${errMsg}
                 </c:otherwise>
             </c:choose>
         </p>
