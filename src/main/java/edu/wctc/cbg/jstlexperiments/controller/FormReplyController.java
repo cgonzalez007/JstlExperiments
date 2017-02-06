@@ -33,15 +33,13 @@ public class FormReplyController extends HttpServlet {
         String destination = INDEX;
         try{
         int rate = Integer.parseInt(request.getParameter("rate"));
-        request.setAttribute("response", rate);
-        RequestDispatcher view =
-                request.getRequestDispatcher(destination);
-            view.forward(request, response);
+        request.setAttribute("response", rate);     
         } catch (Exception e) {
             destination = INDEX;
             request.setAttribute("errMsg", ERROR_INVALID_INPUT);
         }  
-        
+        RequestDispatcher view = request.getRequestDispatcher(destination);
+        view.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

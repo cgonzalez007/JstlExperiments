@@ -38,7 +38,7 @@
                 <li>
                     ${fn:toUpperCase(names[i])}
                 </li>
-            </c:forEach>
+            </c:forEach>    
         </ul>
         <br>
         <br>
